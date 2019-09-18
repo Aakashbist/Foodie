@@ -79,7 +79,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         public void setRecipe(@NotNull Recipe searchRecipeItem) {
             String url = searchRecipeItem.getImageUrl();
 
-            Glide.with(itemView.getContext()).load(url).placeholder(R.drawable.ic_launcher_foreground).into(imageView);
+            Glide.with(itemView.getContext()).load(url).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(imageView);
 
             titleTextView.setText(searchRecipeItem.getTitle());
             socialTextView.setText(searchRecipeItem.getSourceUrl());

@@ -8,12 +8,12 @@
     android:background="#DCDDDCDC">
 
     <androidx.recyclerview.widget.RecyclerView
-        tools:listitem="@layout/recipe_list_item"
         android:id="@+id/recipe_list_recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recipe_list_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
