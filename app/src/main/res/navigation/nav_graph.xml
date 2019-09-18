@@ -8,16 +8,31 @@
     <fragment
         android:id="@+id/exploreFragment"
         android:name="com.example.yummy.Fragment.Explore"
-        android:label="fragment_explore"
-        tools:layout="@layout/fragment_explore" />
+        android:label="Explore"
+        tools:layout="@layout/fragment_explore">
+
+        <action
+            android:id="@+id/goToRecipeDetail"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
         android:name="com.example.yummy.Fragment.Favourite"
-        android:label="fragment_favourite"
+        android:label="Favourite"
         tools:layout="@layout/fragment_favourite" />
     <fragment
         android:id="@+id/shoppingFragment"
         android:name="com.example.yummy.Fragment.Shopping"
-        android:label="fragment_shopping"
+        android:label="Shopping"
         tools:layout="@layout/fragment_shopping" />
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.example.yummy.Fragment.RecipeDetailFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_recipe_detail">
+        <argument
+            android:name="RecipeId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>
