@@ -82,8 +82,9 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             Glide.with(itemView.getContext()).load(url).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(imageView);
 
             titleTextView.setText(searchRecipeItem.getTitle());
-            socialTextView.setText(searchRecipeItem.getSourceUrl());
-            publisherTextView.setText(searchRecipeItem.getRecipeId());
+            //todo social rank
+            socialTextView.setText(searchRecipeItem.getRecipeId());
+            publisherTextView.setText(searchRecipeItem.getPublisher());
 
         }
 

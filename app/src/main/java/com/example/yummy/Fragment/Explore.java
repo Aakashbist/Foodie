@@ -84,8 +84,6 @@ public class Explore extends Fragment {
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
-
-
     }
 
     @Override
@@ -101,7 +99,6 @@ public class Explore extends Fragment {
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-
                     //todo if you like to search after typing full word
 //                    searchRecipes(query);
 //                    Toast.makeText(getContext(),"From explore fragment " + query ,Toast.LENGTH_SHORT).show();

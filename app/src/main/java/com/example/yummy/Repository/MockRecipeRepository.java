@@ -36,7 +36,11 @@ public class MockRecipeRepository implements IRecipeRepository {
 
     @Override
     public LiveData<List<Recipe>> searchRecipes(String searchTerm) {
+        if (searchTerm == null || searchTerm.isEmpty()) {
+            searchedRecipes.setValue(listOfRecipes);
+            return searchedRecipes;
 
+        }
         // get an iterator to the list
         Iterator<Recipe> iterator = listOfRecipes.iterator();
         List<Recipe> searchRecipeItemList = new ArrayList<>();
@@ -44,19 +48,11 @@ public class MockRecipeRepository implements IRecipeRepository {
         // iterate through the list
         while (iterator.hasNext()) {
             Recipe item = iterator.next();
-
             // filter values that start with searchTerm
-            if (searchTerm == null) {
-                    searchRecipeItemList.add(item);
+            if (item.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
+                searchRecipeItemList.add(item);
             }
-            else{
-                if(item.getTitle().toLowerCase().contains(searchTerm.toLowerCase())){
-                    searchRecipeItemList.add(item);
-                }
-            }
-
         }
-
         searchedRecipes.setValue(searchRecipeItemList);
         return searchedRecipes;
     }

@@ -4,6 +4,7 @@ package com.example.yummy.Repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.yummy.Model.Recipe;
 import com.example.yummy.Model.RecipeWithIngredints;
@@ -17,7 +18,7 @@ public class RecipeRepository implements IRecipeRepository {
 
     private IRecipeService service;
 
-    private MutableLiveData<List<Recipe>> listOfRecipes = new MutableLiveData<>();
+    private LiveData<List<Recipe>> listOfRecipes  ;
     private MutableLiveData<RecipeWithIngredints> recipe = new MutableLiveData<>();
 
     public RecipeRepository(IRecipeService recipeService) {
@@ -27,7 +28,7 @@ public class RecipeRepository implements IRecipeRepository {
     public LiveData<List<Recipe>> searchRecipes(String searchTerm) {
         LiveData<List<Recipe>> recipesLiveDataSource = LiveDataReactiveStreams.fromPublisher(service.search(searchTerm)
             .subscribeOn(Schedulers.io()));
-        listOfRecipes.setValue(recipesLiveDataSource.getValue());
+        listOfRecipes = recipesLiveDataSource;
         return listOfRecipes;
     }
 
