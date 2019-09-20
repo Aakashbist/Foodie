@@ -1,6 +1,7 @@
 package com.example.yummy.Fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,22 +35,25 @@ public class RecipeDetailFragment extends Fragment {
     private IngredentAdapter ingredentAdapter;
     private LiveData<RecipeWithIngredints> recipe;
     private IRecipeRepository repository;
+    private String recipeId;
 
     List<String> list = new ArrayList<>();
 
     private ImageView imageView;
+    private ImageView addToFavouriteImageView;
     private TextView titleTextView;
     private TextView publisherTextView;
 
 
     public RecipeDetailFragment() {
+
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        repository = new MockRecipeRepository(this.getContext());
+        repository = MockRecipeRepository.getInstance(this.getContext());
     }
 
 
@@ -62,9 +66,10 @@ public class RecipeDetailFragment extends Fragment {
         //find views
 
         imageView = view.findViewById(R.id.recipeImage);
+        addToFavouriteImageView = view.findViewById(R.id.addtofavourite);
         titleTextView = view.findViewById(R.id.recipeTitle);
         publisherTextView = view.findViewById(R.id.recipePublisher);
-
+        addToFavourite(view);
 
         //set up recycler view
         recyclerView = view.findViewById(R.id.recipeDetailRecyclerView);
@@ -73,8 +78,17 @@ public class RecipeDetailFragment extends Fragment {
         recyclerView.setAdapter(ingredentAdapter);
 
         //todo change id as needed
-        String recipeId = getArguments().getString("recipeId");
-        getDetails(recipeId);
+
+        recipeId = getArguments().getString("recipeId");
+        if (recipeId != null) {
+            getDetails(recipeId);
+            if (repository.isFavourite(recipeId)) {
+                addToFavouriteImageView.setColorFilter(Color.RED);
+                addToFavouriteImageView.setEnabled(false);
+            } else {
+                addToFavouriteImageView.setColorFilter(Color.GRAY);
+            }
+        }
         return view;
     }
 
@@ -97,6 +111,21 @@ public class RecipeDetailFragment extends Fragment {
 
     private void getDetails(String recipeId) {
         recipe = repository.getRecipeDetail(recipeId);
+    }
+
+
+    public void addToFavourite(View view) {
+        addToFavouriteImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (recipeId != null) {
+                    repository.addToFavourite(recipeId);
+                }
+                addToFavouriteImageView.setColorFilter(Color.RED);
+                addToFavouriteImageView.setEnabled(false);
+            }
+        });
+
     }
 
 

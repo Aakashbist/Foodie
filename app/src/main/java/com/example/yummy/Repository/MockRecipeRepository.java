@@ -18,21 +18,67 @@ import java.util.List;
 
 public class MockRecipeRepository implements IRecipeRepository {
     private List<Recipe> listOfRecipes;
+    private List<Recipe> listOfFavouriteRecipes = new ArrayList<>();
     private List<RecipeWithIngredints> recipesWithIngredints;
-    private RecipeWithIngredints recipeItem;
     private Context context;
     private MutableLiveData<List<Recipe>> searchedRecipes = new MutableLiveData<>();
     private MutableLiveData<RecipeWithIngredints> recipe = new MutableLiveData<>();
+    private MutableLiveData<List<Recipe>> recipeFavourites = new MutableLiveData<>();
+
     private Gson gson = new Gson();
 
+   static MockRecipeRepository obj ;
 
-    public MockRecipeRepository(Context context) {
+    public static MockRecipeRepository getInstance(Context context){
+
+        if (obj != null){
+            return obj;
+        }
+        obj=new MockRecipeRepository(context);
+        return obj;
+    }
+
+    private MockRecipeRepository(Context context) {
 
         this.context = context;
 
         loadData();
     }
 
+    @Override
+    public void addToFavourite(String recipeId) {
+
+        Iterator<Recipe> iterator = listOfRecipes.iterator();
+
+        while (iterator.hasNext()) {
+            Recipe item = iterator.next();
+            if (item.getRecipeId().equals(recipeId)) {
+                listOfFavouriteRecipes.add(item);
+            }
+        }
+
+
+    }
+
+    @Override
+    public LiveData<List<Recipe>> getFavourite() {
+        recipeFavourites.setValue(listOfFavouriteRecipes);
+        return recipeFavourites;
+
+    }
+
+    @Override
+    public boolean isFavourite(String recipeId) {
+        Iterator<Recipe> iterator = listOfFavouriteRecipes.iterator();
+
+        while (iterator.hasNext()) {
+            Recipe item = iterator.next();
+            if (item.getRecipeId().equals(recipeId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public LiveData<List<Recipe>> searchRecipes(String searchTerm) {
@@ -72,18 +118,21 @@ public class MockRecipeRepository implements IRecipeRepository {
         return recipe;
     }
 
+
     private void loadData() {
 
-        listOfRecipes = Arrays.asList(gson.fromJson(getRecipesJson(), Recipe[].class));
-        recipesWithIngredints = Arrays.asList(gson.fromJson(getRecipesJson(), RecipeWithIngredints[].class));
+        listOfRecipes = Arrays.asList(gson.fromJson(getJson("recipe.json"), Recipe[].class));
+        recipesWithIngredints = Arrays.asList(gson.fromJson(getJson("recipe.json"), RecipeWithIngredints[].class));
         recipe.setValue(recipesWithIngredints.get(0));
+        listOfFavouriteRecipes.add(listOfRecipes.get(0));
+        listOfFavouriteRecipes.add(listOfRecipes.get(1));
     }
 
 
-    private String getRecipesJson() {
+    private String getJson(String fileName) {
 
         try {
-            InputStream inputStream = context.getAssets().open("recipe.json");
+            InputStream inputStream = context.getAssets().open(fileName);
             int size = inputStream.available();
             byte[] buffer = new byte[size];
             inputStream.read(buffer);
@@ -97,5 +146,6 @@ public class MockRecipeRepository implements IRecipeRepository {
         }
 
     }
+
 
 }

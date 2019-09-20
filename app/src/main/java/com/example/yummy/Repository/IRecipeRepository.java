@@ -13,4 +13,8 @@ public interface IRecipeRepository {
 
     LiveData<RecipeWithIngredints> getRecipeDetail(String recipeId);
 
+    void addToFavourite(String recipeId);
+    LiveData<List<Recipe>> getFavourite();
+    boolean isFavourite(String recipeId);
+
 }

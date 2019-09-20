@@ -13,6 +13,9 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.yummy.Model.Recipe;
 import com.example.yummy.R;
 
@@ -64,12 +67,12 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         private TextView titleTextView;
         private TextView socialTextView;
         private TextView publisherTextView;
+        private String recipeId;
 
 
         private RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-
             imageView = itemView.findViewById(R.id.recipeImage);
             titleTextView = itemView.findViewById(R.id.recipeTitle);
             socialTextView = itemView.findViewById(R.id.recipeSocial);
@@ -77,13 +80,15 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         }
 
         public void setRecipe(@NotNull Recipe searchRecipeItem) {
+            recipeId=searchRecipeItem.getRecipeId();
             String url = searchRecipeItem.getImageUrl();
-
-            Glide.with(itemView.getContext()).load(url).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(imageView);
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
+            Glide.with(itemView.getContext()).load(url).centerCrop().apply(requestOptions).placeholder(R.drawable.ic_launcher_foreground).into(imageView);
 
             titleTextView.setText(searchRecipeItem.getTitle());
             //todo social rank
-            socialTextView.setText(searchRecipeItem.getRecipeId());
+            socialTextView.setText(String.valueOf(searchRecipeItem.getSocialRank()));
             publisherTextView.setText(searchRecipeItem.getPublisher());
 
         }
@@ -91,7 +96,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
         @Override
         public void onClick(View view) {
-            String recipeId = publisherTextView.getText().toString();
+
             Bundle bundle = new Bundle();
 
             //todo pass recipe id from above

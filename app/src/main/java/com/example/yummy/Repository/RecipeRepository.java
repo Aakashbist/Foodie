@@ -40,4 +40,21 @@ public class RecipeRepository implements IRecipeRepository {
         recipe.setValue(recipeItemLiveData.getValue());
         return recipe;
     }
+
+    @Override
+    public void addToFavourite(String recipeId) {
+
+    }
+
+    @Override
+    public LiveData<List<Recipe>> getFavourite() {
+        return null;
+    }
+
+    @Override
+    public boolean isFavourite(String recipeId) {
+        return false;
+    }
+
+
 }

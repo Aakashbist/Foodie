@@ -1,5 +1,72 @@
 [
   {
+    "publisher": "All Recipes",
+    "f2f_url": "http://food2fork.com/view/13674",
+    "ingredients": [
+      "2 heads fresh broccoli",
+      "1 red onion",
+      "1/2 pound bacon",
+      "3/4 cup raisins",
+      "3/4 cup sliced almonds",
+      "1 cup mayonnaise",
+      "1/2 cup white sugar",
+      "2 tablespoons white wine vinegar"
+    ],
+    "source_url": "http://allrecipes.com/Recipe/Fresh-Broccoli-Salad/Detail.aspx",
+    "recipe_id": "13674",
+    "image_url": "http://static.food2fork.com/38317bf1d.jpg",
+    "social_rank": 99,
+    "publisher_url": "http://allrecipes.com",
+    "title": "Fresh Broccoli Salad"
+  },
+  {
+    "publisher": "The Pioneer Woman",
+    "f2f_url": "http://food2fork.com/view/47091",
+    "ingredients": [
+      "2 whole Rib-eye Or Strip Steaks, Extra Fat Trimmed",
+      "_____",
+      "FOR THE DRESSING/MARINADE:",
+      "3/4 cups Canola Oil",
+      "3 Tablespoons Red Wine Vinegar",
+      "1 Tablespoon Balsamic Vinegar",
+      "1 Tablespoon Worcestershire Sauce",
+      "2 Tablespoons Soy Sauce",
+      "1 teaspoon (additional) Soy Sauce",
+      "2 Tablespoons Lime Juice",
+      "2 Tablespoons Sugar",
+      "3 cloves Garlic, Peeled",
+      "1 Tablespoon Minced Fresh Ginger",
+      "1/2 teaspoon Hot Chili Oil",
+      "1 teaspoon Kosher Salt",
+      "Lots Of Freshly Ground Black Pepper",
+      "_____",
+      "FOR THE ONION STRINGS:",
+      "2 whole Onions, Sliced As Thin As Possible",
+      "2 cups Buttermilk",
+      "2 cups Flour",
+      "1 Tablespoon Salt",
+      "1/2 teaspoon Cayenne Pepper",
+      "1 quart Canola Oil",
+      "Black Pepper To Taste",
+      "_____",
+      "FOR THE CANDIED PECAN BITS:",
+      "1/2 cup Pecans, Chopped",
+      "1 cup Sugar",
+      "2 Tablespoons Water",
+      "_____",
+      "FOR THE SALAD:",
+      "Lettuce Mix: Romaine, Arugula, Watercress, Raddiccio, Etc.",
+      "Small Grape Tomatoes",
+      "3/4 cups Crumbled Blue Cheese"
+    ],
+    "source_url": "http://thepioneerwoman.com/cooking/2010/10/big-steak-salad/",
+    "recipe_id": "47091",
+    "image_url": "http://static.food2fork.com/5095710774_9a8833d919_zc9c0.jpg",
+    "social_rank": 91,
+    "publisher_url": "http://thepioneerwoman.com",
+    "title": "Steak Salad"
+  },
+  {
     "publisher": "Closet Cooking",
     "f2f_url": "http://food2fork.com/view/35120",
     "ingredients": [
@@ -33,6 +100,33 @@
     "social_rank": 100.0,
     "publisher_url": "http://thepioneerwoman.com",
     "title": "Perfect Iced Coffee"
+  },
+  {
+    "publisher": "The Pioneer Woman",
+    "f2f_url": "http://food2fork.com/view/47031",
+    "ingredients": [
+      "4 whole Boneless, Skinless Chicken Breasts",
+      "Salt And Pepper, to taste",
+      "Olive Oil, For Drizzling",
+      "3 stalks Celery (inner Light Green Stalks), Finely Diced",
+      "2 ears Fresh Corn",
+      "1/4 whole Medium Red Onion, Finely Diced",
+      "1-1/2 cup Blueberries",
+      "3 Tablespoons Fresh Dill, Minced",
+      "4 Tablespoons Mayonnaise",
+      "4 Tablespoons Sour Cream",
+      "1/4 cup Half-and-half",
+      "1 whole Lemon",
+      "1 teaspoon Sugar (more To Taste)",
+      "Salt And Pepper (additional) To Taste",
+      "3/4 cups Crumbled Feta"
+    ],
+    "source_url": "http://thepioneerwoman.com/cooking/2011/04/grilled-chicken-salad-with-feta-fresh-corn-and-blueberries/",
+    "recipe_id": "47031",
+    "image_url": "http://static.food2fork.com/TPW_4112a95f.jpg",
+    "social_rank": 99,
+    "publisher_url": "http://thepioneerwoman.com",
+    "title": "Grilled Chicken Salad with Feta, Fresh Corn, and Blueberries"
   },
   {
     "publisher": "101 Cookbooks",
@@ -446,19 +540,34 @@
     "title": "Guacamole Grilled Cheese Sandwich"
   },
   {
-
-      "publisher": "Two Peas and Their Pod",
-      "f2f_url": "http://food2fork.com/view/54489",
-      "ingredients": [
-        "4 large very ripe bananas",
-        "2 tablespoons peanut butter"
-      ],
-      "source_url": "http://www.twopeasandtheirpod.com/two-ingredient-banana-peanut-butter-ice-cream/",
-      "recipe_id": "54489",
-      "image_url": "http://static.food2fork.com/bananapeanutbuttericecream5c16d.jpg",
-      "social_rank": 100.0,
-      "publisher_url": "http://www.twopeasandtheirpod.com",
-      "title": "Two-Ingredient Banana Peanut Butter Ice Cream"
-    }
-
+    "publisher": "All Recipes",
+    "f2f_url": "http://food2fork.com/view/7567",
+    "ingredients": [
+      "2 (8 ounce) packages cream cheese, softened",
+      "3/4 cup pepper sauce (such as Frank's Red Hot®)",
+      "1 cup Ranch-style salad dressing",
+      "2 cups diced cooked chicken",
+      "1 cup shredded Cheddar cheese"
+    ],
+    "source_url": "http://allrecipes.com/Recipe/Chicken-Wing-Dip/Detail.aspx",
+    "recipe_id": "7567",
+    "image_url": "http://static.food2fork.com/960953c332.jpg",
+    "social_rank": 99,
+    "publisher_url": "http://allrecipes.com",
+    "title": "Chicken Wing Dip"
+  },
+  {
+    "publisher": "Two Peas and Their Pod",
+    "f2f_url": "http://food2fork.com/view/54489",
+    "ingredients": [
+      "4 large very ripe bananas",
+      "2 tablespoons peanut butter"
+    ],
+    "source_url": "http://www.twopeasandtheirpod.com/two-ingredient-banana-peanut-butter-ice-cream/",
+    "recipe_id": "54489",
+    "image_url": "http://static.food2fork.com/bananapeanutbuttericecream5c16d.jpg",
+    "social_rank": 100.0,
+    "publisher_url": "http://www.twopeasandtheirpod.com",
+    "title": "Two-Ingredient Banana Peanut Butter Ice Cream"
+  }
 ]
