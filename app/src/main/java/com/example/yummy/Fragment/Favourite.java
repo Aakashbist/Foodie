@@ -1,6 +1,7 @@
 package com.example.yummy.Fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,8 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yummy.Adapter.FavouriteAdapter;
+import com.example.yummy.ApplicationServiceManager;
 import com.example.yummy.Model.Recipe;
 import com.example.yummy.R;
+import com.example.yummy.RecipeApplication;
 import com.example.yummy.Repository.IRecipeRepository;
 import com.example.yummy.Repository.MockRecipeRepository;
 
@@ -41,7 +44,10 @@ public class Favourite extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        repository = MockRecipeRepository.getInstance(this.getContext());
+        Context applicationContext = getContext().getApplicationContext();
+        RecipeApplication application = (RecipeApplication) applicationContext;
+        ApplicationServiceManager manager =  application;
+        repository = manager.getRepository();
     }
 
     @Override
@@ -58,12 +64,7 @@ public class Favourite extends Fragment {
         });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        recipesSearchResult=repository.getFavourite();
 
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

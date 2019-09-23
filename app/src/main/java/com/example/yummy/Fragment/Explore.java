@@ -21,9 +21,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yummy.Adapter.RecipeListAdapter;
+import com.example.yummy.ApplicationServiceManager;
 import com.example.yummy.Model.Recipe;
 import com.example.yummy.Network.ApiClient;
 import com.example.yummy.R;
+import com.example.yummy.RecipeApplication;
 import com.example.yummy.Repository.IRecipeRepository;
 import com.example.yummy.Repository.RecipeRepository;
 
@@ -44,7 +46,7 @@ public class Explore extends Fragment {
 
 
     public Explore() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -78,8 +80,11 @@ public class Explore extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        //repository = MockRecipeRepository.getInstance(this.getContext());
-        repository = new RecipeRepository(ApiClient.getRecipeService());
+        Context applicationContext = getContext().getApplicationContext();
+        RecipeApplication application = (RecipeApplication) applicationContext;
+        ApplicationServiceManager manager = application;
+        repository = manager.getRepository();
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.yummy.Fragment;
 
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.yummy.Adapter.IngredentAdapter;
+import com.example.yummy.ApplicationServiceManager;
 import com.example.yummy.Model.RecipeWithIngredints;
 import com.example.yummy.R;
+import com.example.yummy.RecipeApplication;
 import com.example.yummy.Repository.IRecipeRepository;
 import com.example.yummy.Repository.MockRecipeRepository;
 
@@ -53,7 +56,9 @@ public class RecipeDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        repository = MockRecipeRepository.getInstance(this.getContext());
+        Context applicationContext = getContext().getApplicationContext();
+        ApplicationServiceManager manager = (RecipeApplication) applicationContext;
+        repository = manager.getRepository();
     }
 
 
