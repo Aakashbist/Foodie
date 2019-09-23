@@ -1,20 +1,18 @@
 package com.example.yummy.Network;
 
-import com.example.yummy.Model.Recipe;
-import com.example.yummy.Model.RecipeWithIngredints;
+import com.example.yummy.Repository.models.ServiceRecipeWithIngredints;
+import com.example.yummy.Repository.models.ServiceRecipes;
 
-import java.util.List;
-
-import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+
+//    https://www.food2fork.com/api/search?key=YOUR_API_KEY&q=chicken%20breast&page=2
 public interface IRecipeService {
     @GET("search")
-    Call<List<Recipe>> search(@Query("q") String searchTerm);
-//    https://www.food2fork.com/api/search?key=YOUR_API_KEY&q=chicken%20breast&page=2
+    Call<ServiceRecipes> search(@Query("q") String searchTerm);
 
     @GET("get")
-    Call<RecipeWithIngredints> getRecipeDetail(@Query("rId") String recipeId);
+    Call<ServiceRecipeWithIngredints> getRecipeDetail(@Query("rId") String recipeId);
 }

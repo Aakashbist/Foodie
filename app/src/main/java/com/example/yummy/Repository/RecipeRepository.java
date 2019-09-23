@@ -1,16 +1,14 @@
 package com.example.yummy.Repository;
 
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.yummy.Model.Recipe;
 import com.example.yummy.Model.RecipeWithIngredints;
 import com.example.yummy.Network.IRecipeService;
-
-import org.jetbrains.annotations.NotNull;
+import com.example.yummy.Repository.models.ServiceRecipeWithIngredints;
+import com.example.yummy.Repository.models.ServiceRecipes;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class RecipeRepository implements IRecipeRepository {
 
     private IRecipeService service;
 
-    private MutableLiveData<List<Recipe>> listOfRecipes=new MutableLiveData<>();
+    private MutableLiveData<List<Recipe>> listOfRecipes = new MutableLiveData<>();
 
     private MutableLiveData<RecipeWithIngredints> recipe = new MutableLiveData<>();
 
@@ -31,21 +29,23 @@ public class RecipeRepository implements IRecipeRepository {
     }
 
     public LiveData<List<Recipe>> searchRecipes(String searchTerm) {
-        Call<List<Recipe>> search = service.search(searchTerm);
+        Call<ServiceRecipes> recipes = service.search(searchTerm);
 
-        search.enqueue(new Callback<List<Recipe>>() {
+        recipes.enqueue(new Callback<ServiceRecipes>() {
             @Override
-            public void onResponse(@NotNull Call<List<Recipe>> call, @NotNull Response<List<Recipe>> response) {
-                if (response.isSuccessful())
-
-                    listOfRecipes.setValue(response.body());
+            public void onResponse(Call<ServiceRecipes> call, Response<ServiceRecipes> response) {
+                if (response.isSuccessful()) {
+                    ServiceRecipes body = response.body();
+                    listOfRecipes.setValue(body.recipes);
+                }
             }
 
             @Override
-            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                Log.d("", "onFailure: ss");
+            public void onFailure(Call<ServiceRecipes> call, Throwable t) {
+
             }
         });
+
 
         return listOfRecipes;
     }
@@ -54,15 +54,17 @@ public class RecipeRepository implements IRecipeRepository {
     @Override
     public LiveData<RecipeWithIngredints> getRecipeDetail(String recipeId) {
 
-        Call<RecipeWithIngredints> recipeDetail = service.getRecipeDetail(recipeId);
-        recipeDetail.enqueue(new Callback<RecipeWithIngredints>() {
+        Call<ServiceRecipeWithIngredints> recipeDetail = service.getRecipeDetail(recipeId);
+        recipeDetail.enqueue(new Callback<ServiceRecipeWithIngredints>() {
             @Override
-            public void onResponse(Call<RecipeWithIngredints> call, Response<RecipeWithIngredints> response) {
-                recipe.setValue(response.body());
+            public void onResponse(Call<ServiceRecipeWithIngredints> call, Response<ServiceRecipeWithIngredints> response) {
+                if (response.isSuccessful()) {
+                    recipe.setValue(response.body().recipe);
+                }
             }
 
             @Override
-            public void onFailure(Call<RecipeWithIngredints> call, Throwable t) {
+            public void onFailure(Call<ServiceRecipeWithIngredints> call, Throwable t) {
 
             }
         });
