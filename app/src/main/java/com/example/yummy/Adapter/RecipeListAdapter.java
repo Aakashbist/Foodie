@@ -100,8 +100,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             Bundle bundle = new Bundle();
 
             //todo pass recipe id from above
-            bundle.putString("recipeId", recipeId);
-            Navigation.findNavController(view).navigate(R.id.recipeDetailFragment, bundle);
+            if(recipeId!=null) {
+                bundle.putString("recipeId", recipeId);
+                Navigation.findNavController(view).navigate(R.id.recipeDetailFragment, bundle);
+            }
         }
     }
 

@@ -22,9 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yummy.Adapter.RecipeListAdapter;
 import com.example.yummy.Model.Recipe;
+import com.example.yummy.Network.ApiClient;
 import com.example.yummy.R;
 import com.example.yummy.Repository.IRecipeRepository;
-import com.example.yummy.Repository.MockRecipeRepository;
+import com.example.yummy.Repository.RecipeRepository;
 
 import java.util.List;
 
@@ -49,11 +50,18 @@ public class Explore extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        searchRecipes(null);
+        recyclerView = view.findViewById(R.id.recipe_list_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recipeListAdapter = new RecipeListAdapter();
+        recyclerView.setAdapter(recipeListAdapter);
 
         recipesSearchResult.observe(this.getViewLifecycleOwner(), new Observer<List<Recipe>>() {
             @Override
             public void onChanged(List<Recipe> recipes) {
-                recipeListAdapter.setItems(recipes);
+                if (recipes != null) {
+                    recipeListAdapter.setItems(recipes);
+                }
             }
         });
 
@@ -63,25 +71,15 @@ public class Explore extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-
-
-        View view = inflater.inflate(R.layout.fragment_explore, container, false);
-        searchRecipes(null);
-        recyclerView = view.findViewById(R.id.recipe_list_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recipeListAdapter = new RecipeListAdapter();
-        recyclerView.setAdapter(recipeListAdapter);
-        return view;
+        return inflater.inflate(R.layout.fragment_explore, container, false);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-       repository = MockRecipeRepository.getInstance(this.getContext());
-       // repository = new RecipeRepository(ApiClient.getRecipeService());
+        //repository = MockRecipeRepository.getInstance(this.getContext());
+        repository = new RecipeRepository(ApiClient.getRecipeService());
     }
 
     @Override

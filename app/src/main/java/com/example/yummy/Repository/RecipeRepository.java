@@ -1,24 +1,29 @@
 package com.example.yummy.Repository;
 
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.yummy.Model.Recipe;
 import com.example.yummy.Model.RecipeWithIngredints;
 import com.example.yummy.Network.IRecipeService;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
-import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecipeRepository implements IRecipeRepository {
 
     private IRecipeService service;
 
-    private LiveData<List<Recipe>> listOfRecipes  ;
+    private MutableLiveData<List<Recipe>> listOfRecipes=new MutableLiveData<>();
+
     private MutableLiveData<RecipeWithIngredints> recipe = new MutableLiveData<>();
 
     public RecipeRepository(IRecipeService recipeService) {
@@ -26,18 +31,41 @@ public class RecipeRepository implements IRecipeRepository {
     }
 
     public LiveData<List<Recipe>> searchRecipes(String searchTerm) {
-        LiveData<List<Recipe>> recipesLiveDataSource = LiveDataReactiveStreams.fromPublisher(service.search(searchTerm)
-            .subscribeOn(Schedulers.io()));
-        listOfRecipes = recipesLiveDataSource;
+        Call<List<Recipe>> search = service.search(searchTerm);
+
+        search.enqueue(new Callback<List<Recipe>>() {
+            @Override
+            public void onResponse(@NotNull Call<List<Recipe>> call, @NotNull Response<List<Recipe>> response) {
+                if (response.isSuccessful())
+
+                    listOfRecipes.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Recipe>> call, Throwable t) {
+                Log.d("", "onFailure: ss");
+            }
+        });
+
         return listOfRecipes;
     }
 
 
     @Override
     public LiveData<RecipeWithIngredints> getRecipeDetail(String recipeId) {
-        LiveData<RecipeWithIngredints> recipeItemLiveData = LiveDataReactiveStreams.fromPublisher(service.getRecipeDetail(recipeId)
-            .subscribeOn(Schedulers.io()));
-        recipe.setValue(recipeItemLiveData.getValue());
+
+        Call<RecipeWithIngredints> recipeDetail = service.getRecipeDetail(recipeId);
+        recipeDetail.enqueue(new Callback<RecipeWithIngredints>() {
+            @Override
+            public void onResponse(Call<RecipeWithIngredints> call, Response<RecipeWithIngredints> response) {
+                recipe.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<RecipeWithIngredints> call, Throwable t) {
+
+            }
+        });
         return recipe;
     }
 
