@@ -1,7 +1,6 @@
 package com.example.yummy.Fragment;
 
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.yummy.Adapter.IngredentAdapter;
-import com.example.yummy.ApplicationServiceManager;
 import com.example.yummy.Model.RecipeWithIngredints;
 import com.example.yummy.R;
-import com.example.yummy.RecipeApplication;
 import com.example.yummy.Repository.IRecipeRepository;
-import com.example.yummy.Repository.MockRecipeRepository;
+import com.example.yummy.ViewModel.RecipeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +43,7 @@ public class RecipeDetailFragment extends Fragment {
     private ImageView addToFavouriteImageView;
     private TextView titleTextView;
     private TextView publisherTextView;
+    private RecipeViewModel viewModel;
 
 
     public RecipeDetailFragment() {
@@ -56,9 +54,7 @@ public class RecipeDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Context applicationContext = getContext().getApplicationContext();
-        ApplicationServiceManager manager = (RecipeApplication) applicationContext;
-        repository = manager.getRepository();
+        viewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
     }
 
 
@@ -86,8 +82,8 @@ public class RecipeDetailFragment extends Fragment {
 
         recipeId = getArguments().getString("recipeId");
         if (recipeId != null) {
-            getDetails(recipeId);
-            if (repository.isFavourite(recipeId)) {
+            viewModel.getRecipeDetail(recipeId);
+            if (viewModel.isFavourite(recipeId)) {
                 addToFavouriteImageView.setColorFilter(Color.RED);
                 addToFavouriteImageView.setEnabled(false);
             } else {
@@ -98,10 +94,10 @@ public class RecipeDetailFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-        recipe.observe(this.getViewLifecycleOwner(), new Observer<RecipeWithIngredints>() {
+        viewModel.recipe.observe(this.getViewLifecycleOwner(), new Observer<RecipeWithIngredints>() {
             @Override
             public void onChanged(RecipeWithIngredints recipeItem) {
                 if (recipeItem != null) {
@@ -112,10 +108,7 @@ public class RecipeDetailFragment extends Fragment {
                 }
             }
         });
-    }
 
-    private void getDetails(String recipeId) {
-        recipe = repository.getRecipeDetail(recipeId);
     }
 
 
@@ -124,7 +117,7 @@ public class RecipeDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (recipeId != null) {
-                    repository.addToFavourite(recipeId);
+                   viewModel.addToFavourite(recipeId);
                 }
                 addToFavouriteImageView.setColorFilter(Color.RED);
                 addToFavouriteImageView.setEnabled(false);
