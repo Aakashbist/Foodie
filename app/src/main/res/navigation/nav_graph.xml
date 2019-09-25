@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.example.yummy.Fragment.Explore"
+        android:name="com.example.yummy.UI.Fragment.Explore"
         android:label="Explore"
         tools:layout="@layout/fragment_explore">
 
@@ -17,17 +17,17 @@
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.example.yummy.Fragment.Favourite"
+        android:name="com.example.yummy.UI.Fragment.Favourite"
         android:label="Favourite"
         tools:layout="@layout/fragment_favourite" />
     <fragment
         android:id="@+id/shoppingFragment"
-        android:name="com.example.yummy.Fragment.Shopping"
+        android:name="com.example.yummy.UI.Fragment.Shopping"
         android:label="Shopping"
         tools:layout="@layout/fragment_shopping" />
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="com.example.yummy.Fragment.RecipeDetailFragment"
+        android:name="com.example.yummy.UI.Fragment.RecipeDetailFragment"
         android:label="Details"
         tools:layout="@layout/fragment_recipe_detail">
         <argument

@@ -1,4 +1,4 @@
-package com.example.yummy.Fragment;
+package com.example.yummy.UI.Fragment;
 
 
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.yummy.Adapter.FavouriteAdapter;
 import com.example.yummy.Model.Recipe;
 import com.example.yummy.R;
-import com.example.yummy.Repository.IRecipeRepository;
 import com.example.yummy.ViewModel.RecipeViewModel;
 
 import java.util.List;

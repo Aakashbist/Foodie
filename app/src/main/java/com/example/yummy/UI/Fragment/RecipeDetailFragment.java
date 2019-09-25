@@ -1,4 +1,4 @@
-package com.example.yummy.Fragment;
+package com.example.yummy.UI.Fragment;
 
 
 import android.graphics.Color;
@@ -125,6 +125,8 @@ public class RecipeDetailFragment extends Fragment {
         });
 
     }
+
+
 
 
 }

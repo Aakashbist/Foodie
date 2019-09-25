@@ -58,8 +58,8 @@ public class IngredentAdapter extends RecyclerView.Adapter<IngredentAdapter.Ingr
         }
 
 
-        public void setIngredent(String s) {
-            ingredentsView.setText(s);
+        public void setIngredent(String string) {
+            ingredentsView.setText(string);
         }
     }
 }

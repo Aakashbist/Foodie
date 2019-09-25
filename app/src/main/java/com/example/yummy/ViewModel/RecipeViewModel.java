@@ -7,10 +7,10 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.yummy.ApplicationServiceManager;
+import com.example.yummy.AppManager.ApplicationServiceManager;
 import com.example.yummy.Model.Recipe;
 import com.example.yummy.Model.RecipeWithIngredints;
-import com.example.yummy.RecipeApplication;
+import com.example.yummy.AppManager.RecipeApplication;
 import com.example.yummy.Repository.IRecipeRepository;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class RecipeViewModel extends AndroidViewModel {
         super(application);
         RecipeApplication recipeApplication = (RecipeApplication) application;
         ApplicationServiceManager manager = recipeApplication;
-        repository = manager.getRepository();
+        repository = manager.getRecipeRepository();
 
     }
 

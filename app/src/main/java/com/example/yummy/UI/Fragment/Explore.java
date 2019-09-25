@@ -1,4 +1,4 @@
-package com.example.yummy.Fragment;
+package com.example.yummy.UI.Fragment;
 
 
 import android.app.SearchManager;
