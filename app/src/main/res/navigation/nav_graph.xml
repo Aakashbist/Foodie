@@ -7,32 +7,35 @@
 
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.example.yummy.UI.Fragment.Explore"
+        android:name="com.aakashbista.foodie.UI.Fragment.Explore"
         android:label="Explore"
         tools:layout="@layout/fragment_explore">
-
         <action
-            android:id="@+id/goToRecipeDetail"
+            android:id="@+id/action_exploreFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.example.yummy.UI.Fragment.Favourite"
+        android:name="com.aakashbista.foodie.UI.Fragment.Favourite"
         android:label="Favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shoppingFragment"
-        android:name="com.example.yummy.UI.Fragment.Shopping"
+        android:name="com.aakashbista.foodie.UI.Fragment.Shopping"
         android:label="Shopping"
         tools:layout="@layout/fragment_shopping" />
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="com.example.yummy.UI.Fragment.RecipeDetailFragment"
+        android:name="com.aakashbista.foodie.UI.Fragment.RecipeDetailFragment"
         android:label="Details"
         tools:layout="@layout/fragment_recipe_detail">
         <argument
-            android:name="RecipeId"
-            android:defaultValue="0"
-            app:argType="integer" />
+            android:name="recipeId"
+            app:argType="string"
+            android:defaultValue="default" />
     </fragment>
 </navigation>

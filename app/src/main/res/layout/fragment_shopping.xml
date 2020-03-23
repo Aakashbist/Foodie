@@ -30,10 +30,8 @@
         android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoppingEditText"
-        app:layout_constraintVertical_bias="0.071"
         tools:listitem="@layout/note_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
